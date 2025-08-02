@@ -35,6 +35,6 @@ Create a text file with the commands to run the program: <br/>
 <img src="https://i.imgur.com/dUtrzXa.png" height="80%" width="80%" alt="Password Generator Steps"/>
 <br />
 <br />
-Save as a .bat file, so that users can double click to run the script: <br/>
-<img src="https://i.imgur.com/Hp67va4.png" height="80%" width="80%" alt="Password Generator Steps"/>
+Save as a .bat file so that users can double click to run the script: <br/>
+<img src="https://i.imgur.com/llqWixQ.png" height="80%" width="80%" alt="Password Generator Steps"/>
 </p>
