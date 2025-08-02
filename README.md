@@ -20,10 +20,10 @@ Checks the network status of a list of websites found in the websites.txt file a
 
 <p align="center">
 Reads URLs from .txt file and return a list of them: <br/>
-<img src="https://i.imgur.com/3PLf8ih.png" height="80%" width="80%" alt="Password Generator Steps"/>
+<img src="https://i.imgur.com/HPPE9n5.png" height="80%" width="80%" alt="Password Generator Steps"/>
 <br />
 <br />
-Checks URL's network connect via HTTP(S) and TCP then returns 'UP' or 'DOWN':  <br/>
+Checks URL's network connect via HTTP(S) and TCP then returns the status:  <br/>
 <img src="https://i.imgur.com/KuRVwMp.png" height="80%" width="80%" alt="Password Generator Steps"/>
 <br />
 <br />
