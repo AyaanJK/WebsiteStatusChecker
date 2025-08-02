@@ -1,70 +1,75 @@
--- Website Status Checker
+-- Website Network Status Checker
 print("Starting website checker...\n")
 
--- Function to read websites from text file
+-- Color Codes
+local COLORS = {
+    RED = "\27[31m",   
+    GREEN = "\27[32m",  
+    RESET = "\27[0m"    
+}
+
 local function readWebsites()
-    local websites = {}  
-    local file = io.open("websites.txt", "r") 
+    local websites = {}
+    local file = io.open("websites.txt", "r")
     
     if not file then
-        print("ERROR: Missing websites.txt")
-        print("Please create a websites.txt file with one URL per line")
-        return nil 
+        print(COLORS.RED.."ERROR: Missing websites.txt"..COLORS.RESET)
+        print("Create a file named 'websites.txt' with one URL per line")
+        return nil
     end
     
     print("Websites to check:")
-    for line in file:lines() do  
-        line = line:gsub("%s+", "")
-        if line ~= "" then  
-            table.insert(websites, line)  
-            print("- " .. line) 
+    for line in file:lines() do
+        line = line:gsub("%s+", "") 
+        if line ~= "" then
+            if not line:match("^https?://") then
+                line = "http://"..line 
+            end
+            table.insert(websites, line)
+            print("- "..line)
         end
     end
-    file:close() 
+    file:close()
     
-    return websites 
+    return websites
 end
 
--- Function to check if a website is up
 local function checkWebsite(url)
-    local socket = require("socket")  
-    local tcp = socket.tcp()  
-    tcp:settimeout(5) 
+    local socket = require("socket")
+    local tcp = socket.tcp()
+    tcp:settimeout(5)
     
+    local protocol, host = url:match("^(https?)://([^/]+)")
+    local port = protocol == "https" and 443 or 80
     
-    local protocol, host, port = url:match("^(https?)://([^:/]+):?(%d*)")
-    port = port ~= "" and tonumber(port) or (protocol == "https" and 443 or 80)
-    host = host:gsub("/.*$", "")  
-    
-  
     local success, err = pcall(function()
         return tcp:connect(host, port)
     end)
+    tcp:close()
     
-    tcp:close()  
-    
-    
-    if success then
-        return "UP"
-    else
-        
-        return "DOWN ("..(err:match("[^:]+$") or "unknown error")..")"
-    end
+    return success, err
 end
 
--- Main program execution
-local websites = readWebsites()  -- Get list of websites
-if not websites then return end  -- Exit if no websites found
+-- Main --
+local websites = readWebsites()
+if not websites then return end
 
 print("\nChecking status...")
-for _, url in ipairs(websites) do  -- Loop through each URL
-    local status = checkWebsite(url)  -- Check current URL
-    print(url .. ": " .. status)  -- Print result
+for _, url in ipairs(websites) do
+    local success, err = checkWebsite(url)
+    local status = success and "UP" or "DOWN ("..(err:match("[^:]+$") or "timeout")..")"
+    local color = success and COLORS.GREEN or COLORS.RED
+    
+    print(string.format("%-40s: %s%s%s", 
+          url, 
+          color, 
+          status, 
+          COLORS.RESET))
 end
 
 print("\nAll done!")
 
--- Keep window open on Windows when double-clicked
+
 if package.config:sub(1,1) == "\\" then
     print("\nPress Enter to exit...")
     local _ = io.read()
