@@ -1,4 +1,4 @@
-<h1> Website Network Status Checker #L001</h1>
+<h1> Website Uptime Monitor #L001</h1>
 
 <h2>Description</h2>
 Checks the network status of a list of websites found in the websites.txt file and returns 'UP' or 'DOWN' depending on the status.
@@ -20,19 +20,19 @@ Checks the network status of a list of websites found in the websites.txt file a
 
 <p align="center">
 Reads URLs from .txt file and return a list of them: <br/>
-<img src="https://i.imgur.com/HPPE9n5.png" height="80%" width="80%" alt="Password Generator Steps"/>
+<img src="https://i.imgur.com/HPPE9n5.png" height="80%" width="80%" alt="Website Uptime Monitor Steps"/>
 <br />
 <br />
 Checks URL's network connect via HTTP(S) and TCP then returns the status:  <br/>
-<img src="https://i.imgur.com/KuRVwMp.png" height="80%" width="80%" alt="Password Generator Steps"/>
+<img src="https://i.imgur.com/KuRVwMp.png" height="80%" width="80%" alt="Website Uptime Monitor Steps"/>
 <br />
 <br />
 Calls the second function and loops through list of URLs in .txt file: <br/>
-<img src="https://i.imgur.com/ulpj1jR.png" height="80%" width="80%" alt="Password Generator Steps"/>
+<img src="https://i.imgur.com/ulpj1jR.png" height="80%" width="80%" alt="Website Uptime Monitor Steps"/>
 <br />
 <br />
 Create a text file with the commands to run the program: <br/>
-<img src="https://i.imgur.com/dUtrzXa.png" height="80%" width="80%" alt="Password Generator Steps"/>
+<img src="https://i.imgur.com/dUtrzXa.png" height="80%" width="80%" alt="Website Uptime Monitor Steps"/>
 <br />
 <br />
 Save as a .bat file so that users can double click to run the script: <br/>
